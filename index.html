@@ -16,54 +16,46 @@
     <style>
         /* Estilos personalizados */
         body {
-            [cite_start]font-family: 'Inter', sans-serif; [cite: 2]
-            [cite_start]background-color: #141414; [cite: 3]
-            [cite_start]color: #ffffff; [cite: 3]
+            font-family: 'Inter', sans-serif;
+            background-color: #141414;
+            color: #ffffff;
         }
 
-        [cite_start].carousel::-webkit-scrollbar { display: none; [cite: 3]
-        }
-        [cite_start].carousel { -ms-overflow-style: none; scrollbar-width: none; [cite: 4]
-        }
+        .carousel::-webkit-scrollbar { display: none; }
+        .carousel { -ms-overflow-style: none; scrollbar-width: none; }
 
-        [cite_start].carousel-container { position: relative; [cite: 5]
-        }
+        .carousel-container { position: relative; }
         .carousel-container::before, .carousel-container::after {
-            [cite_start]content: ''; [cite: 7]
-            [cite_start]position: absolute; [cite: 7]
-            [cite_start]top: 0; [cite: 7]
-            [cite_start]bottom: 0; [cite: 7]
-            [cite_start]width: 50px; [cite: 7]
-            [cite_start]pointer-events: none; [cite: 7]
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 50px;
+            pointer-events: none;
         }
-        [cite_start].carousel-container::before { left: 0; background: linear-gradient(to right, #141414, transparent); [cite: 8]
-        }
-        [cite_start].carousel-container::after { right: 0; background: linear-gradient(to left, #141414, transparent); [cite: 9]
-        }
+        .carousel-container::before { left: 0; background: linear-gradient(to right, #141414, transparent); }
+        .carousel-container::after { right: 0; background: linear-gradient(to left, #141414, transparent); }
         
         #details-modal {
-            [cite_start]background-color: rgba(0, 0, 0, 0.8); [cite: 11]
-            [cite_start]backdrop-filter: blur(10px); [cite: 11]
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
         }
 
-        [cite_start].star-rating svg { transition: color 0.2s ease-in-out; [cite: 12]
-        }
+        .star-rating svg { transition: color 0.2s ease-in-out; }
 
         /* Estilo para el spinner de carga */
         .loader {
-            [cite_start]border: 4px solid #f3f3f3; [cite: 13]
-            [cite_start]border-top: 4px solid #e50914; [cite: 13]
-            [cite_start]border-radius: 50%; [cite: 13]
-            [cite_start]width: 30px; [cite: 13]
-            [cite_start]height: 30px; [cite: 13]
-            [cite_start]animation: spin 1s linear infinite; [cite: 13]
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #e50914;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
         }
 
         @keyframes spin {
-            [cite_start]0% { transform: rotate(0deg); [cite: 15]
-            }
-            [cite_start]100% { transform: rotate(360deg); [cite: 16]
-            }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -74,49 +66,54 @@
         <header class="p-4 flex justify-between items-center sticky top-0 z-20 bg-gradient-to-b from-black to-transparent">
             <h1 class="text-2xl font-black text-red-600 tracking-wider uppercase">TeleFlixDB</h1>
             <div class="relative">
-                [cite_start]<input type="text" id="search-input" placeholder="Buscar títulos..." class="bg-gray-800 border border-gray-700 rounded-full py-1.5 px-4 pl-10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600 w-40 sm:w-64 transition-all duration-300"> [cite: 17]
+                <input type="text" id="search-input" placeholder="Buscar títulos..." class="bg-gray-800 border border-gray-700 rounded-full py-1.5 px-4 pl-10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600 w-40 sm:w-64 transition-all duration-300">
                 <svg class="w-5 h-5 text-gray-400 absolute top-1/2 left-3 transform -translate-y-1/2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                [cite_start]</svg> [cite: 18]
+                </svg>
             </div>
         </header>
 
         <section id="hero-section" class="h-[50vh] md:h-[70vh] flex items-end p-4 md:p-8 relative text-white">
             </section>
 
-        [cite_start]<main id="main-content" class="p-4 md:p-8 space-y-8"> [cite: 19]
+        <main id="main-content" class="p-4 md:p-8 space-y-8">
             </main>
 
     </div>
 
     <div id="details-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden transition-opacity duration-300">
         <div id="modal-content" class="bg-gray-900 rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto transform scale-95 transition-transform duration-300">
-            [cite_start]</div> [cite: 20]
+            </div>
     </div>
 
 
     <script>
-        document.addEventListener('DOMContentLoaded', async () => { // Añadido async
+        document.addEventListener('DOMContentLoaded', async () => {
+            console.log('DOM Content Loaded: Iniciando la aplicación.');
+
             // --- INICIALIZACIÓN DE TELEGRAM WEB APP ---
             try {
-                [cite_start]const tg = window.Telegram.WebApp; [cite: 21]
-                [cite_start]tg.ready(); [cite: 21]
-                [cite_start]tg.expand(); [cite: 21]
+                const tg = window.Telegram.WebApp;
+                tg.ready();
+                tg.expand();
+                console.log('Telegram WebApp inicializado.');
             } catch (error) {
-                [cite_start]console.warn("Telegram WebApp script no encontrado. Ejecutando en modo de navegador estándar."); [cite: 22]
+                console.warn("Telegram WebApp script no encontrado o error. Ejecutando en modo de navegador estándar.", error);
             }
 
             // --- ELEMENTOS DEL DOM ---
-            [cite_start]const mainContent = document.getElementById('main-content'); [cite: 27]
-            [cite_start]const searchInput = document.getElementById('search-input'); [cite: 28]
-            [cite_start]const heroSection = document.getElementById('hero-section'); [cite: 28]
-            [cite_start]const detailsModal = document.getElementById('details-modal'); [cite: 28]
-            [cite_start]const modalContent = document.getElementById('modal-content'); [cite: 29]
+            const mainContent = document.getElementById('main-content');
+            const searchInput = document.getElementById('search-input');
+            const heroSection = document.getElementById('hero-section');
+            const detailsModal = document.getElementById('details-modal');
+            const modalContent = document.getElementById('modal-content');
+            console.log('Elementos del DOM obtenidos.');
 
             // --- INTEGRACIÓN DE LA API DE TMDB ---
-            const TMDB_API_KEY = '17bb8342bff5717c23c85b661d8bb512'; [cite_start]// Tu clave de API [cite: 31]
+            const TMDB_API_KEY = '17bb8342bff5717c23c85b661d8bb512'; // Tu clave de API de TMDb
             const TMDB_BASE_URL = 'https://api.themoviedb.org/3/';
             const TMDB_IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/';
+            console.log('Configuración de TMDb API cargada.');
 
             let movieGenres = {};
             let tvGenres = {};
@@ -137,11 +134,16 @@
                 }
 
                 try {
+                    console.log(`Intentando obtener datos de TMDB: ${url.toString()}`);
                     const response = await fetch(url);
                     if (!response.ok) {
+                        const errorText = await response.text();
+                        console.error(`Error al obtener datos de TMDB: ${response.status} - ${response.statusText}`, errorText);
                         throw new Error(`Error al obtener datos de TMDB: ${response.statusText}`);
                     }
-                    return await response.json();
+                    const data = await response.json();
+                    console.log(`Datos de TMDB obtenidos para ${endpoint}:`, data);
+                    return data;
                 } catch (error) {
                     console.error("Error fetching from TMDB:", error);
                     return null;
@@ -166,6 +168,7 @@
              * Carga los nombres de los géneros de películas y series desde TMDb.
              */
             async function fetchGenres() {
+                console.log('Cargando géneros de películas y series...');
                 const movieGenresResponse = await fetchFromTmdb('genre/movie/list');
                 if (movieGenresResponse) {
                     movieGenres = movieGenresResponse.genres.reduce((acc, genre) => {
@@ -180,6 +183,7 @@
                         return acc;
                     }, {});
                 }
+                console.log('Géneros cargados:', { movieGenres, tvGenres });
             }
 
             /**
@@ -200,75 +204,99 @@
             // --- GEMINI API INTEGRATION ---
             /**
              * Llama a la API de Gemini para generar contenido basado en un prompt.
-             * [cite_start]@param {string} prompt - El texto de la pregunta para el LLM. [cite: 30]
-             * [cite_start]@returns {Promise<string>} El texto generado por el modelo. [cite: 31]
+             * @param {string} prompt - El texto de la pregunta para el LLM.
+             * @returns {Promise<string>} El texto generado por el modelo.
              */
             async function callGemini(prompt) {
-                const apiKey = ""; [cite_start]// La clave de API se deja en blanco según las instrucciones. [cite: 32]
-                [cite_start]const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`; [cite: 33]
+                // *** IMPORTANTE: Si quieres usar esta función, reemplaza TU_API_KEY_AQUI con tu clave de API de Google Gemini. ***
+                // *** Si la clave está vacía, las funciones de IA no funcionarán y podrían causar errores si se activan. ***
+                const apiKey = ""; // <--- REEMPLAZA ESTO CON TU CLAVE DE API DE GEMINI
+                
+                if (!apiKey) {
+                    console.error("Clave de API de Gemini no configurada. La funcionalidad de IA no está disponible.");
+                    return "Error: La clave de API de Gemini no está configurada.";
+                }
+
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
                 const payload = {
                     contents: [{
                         role: "user",
                         parts: [{ text: prompt }]
                     }]
-                [cite_start]}; [cite: 34, 35]
+                };
                 try {
+                    console.log('Llamando a Gemini API...');
                     const response = await fetch(apiUrl, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        [cite_start]body: JSON.stringify(payload) [cite: 36]
+                        body: JSON.stringify(payload)
                     });
                     if (!response.ok) {
-                        [cite_start]throw new Error(`API request failed with status ${response.status}`); [cite: 37]
+                        const errorData = await response.json();
+                        console.error(`Gemini API request failed with status ${response.status}`, errorData);
+                        throw new Error(`API request failed: ${errorData.error?.message || response.statusText}`);
                     }
 
-                    [cite_start]const result = await response.json(); [cite: 38]
+                    const result = await response.json();
                     if (result.candidates && result.candidates.length > 0 &&
                         result.candidates[0].content && result.candidates[0].content.parts &&
                         result.candidates[0].content.parts.length > 0) {
-                        [cite_start]return result.candidates[0].content.parts[0].text; [cite: 39]
+                        console.log('Respuesta de Gemini recibida.');
+                        return result.candidates[0].content.parts[0].text;
                     } else {
-                        [cite_start]console.error("Unexpected API response structure:", result); [cite: 40]
-                        [cite_start]return "No se pudo obtener una respuesta del modelo."; [cite: 41]
+                        console.error("Estructura de respuesta de Gemini inesperada:", result);
+                        return "No se pudo obtener una respuesta del modelo.";
                     }
                 } catch (error) {
-                    [cite_start]console.error("Error calling Gemini API:", error); [cite: 42]
-                    [cite_start]return "Error al contactar la API. Por favor, inténtalo de nuevo más tarde."; [cite: 43]
+                    console.error("Error calling Gemini API:", error);
+                    return `Error al contactar la API: ${error.message}. Por favor, inténtalo de nuevo más tarde.`;
                 }
             }
 
 
             // --- FUNCIONES DE RENDERIZADO ---
             function renderCarousel(title, items, container) {
-                if (items.length === 0) return; // No renderizar si no hay elementos
+                if (items.length === 0) {
+                    console.log(`No hay elementos para renderizar el carrusel: "${title}"`);
+                    return; // No renderizar si no hay elementos
+                }
+                console.log(`Renderizando carrusel: "${title}" con ${items.length} elementos.`);
 
-                [cite_start]const section = document.createElement('section'); [cite: 44]
+                const section = document.createElement('section');
                 section.className = 'space-y-3';
                 const heading = document.createElement('h2');
                 heading.className = 'text-xl font-bold text-white';
                 heading.textContent = title;
                 section.appendChild(heading);
-                [cite_start]const carouselContainer = document.createElement('div'); [cite: 45]
+                const carouselContainer = document.createElement('div');
                 carouselContainer.className = 'carousel-container';
                 const carousel = document.createElement('div');
-                [cite_start]carousel.className = 'carousel flex space-x-4 overflow-x-auto pb-4'; [cite: 46]
+                carousel.className = 'carousel flex space-x-4 overflow-x-auto pb-4';
                 items.forEach(item => {
                     const card = document.createElement('div');
                     card.className = 'flex-shrink-0 w-36 md:w-48 cursor-pointer group';
                     card.dataset.id = item.id;
                     card.dataset.type = item.type; // Guardar el tipo para buscar detalles
-                    [cite_start]card.innerHTML = `<img src="${item.poster}" alt="${item.title}" class="rounded-lg object-cover w-full h-full transition-transform duration-300 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/300x450/141414/ef4444?text=No+Image';">`; [cite: 47]
+                    card.innerHTML = `
+                        <img src="${item.poster}" alt="${item.title}" class="rounded-lg object-cover w-full h-full transition-transform duration-300 group-hover:scale-105" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/300x450/141414/ef4444?text=No+Image';">
+                    `;
                     carousel.appendChild(card);
-                [cite_start]}); [cite: 48]
-                [cite_start]carouselContainer.appendChild(carousel); [cite: 48]
+                });
+                carouselContainer.appendChild(carousel);
                 section.appendChild(carouselContainer);
                 container.appendChild(section);
             }
 
             function renderHero(item) {
-                [cite_start]heroSection.style.backgroundImage = `linear-gradient(to top, #141414 10%, transparent 50%), url('${item.backdrop}')`; [cite: 49]
-                [cite_start]heroSection.style.backgroundSize = 'cover'; [cite: 49]
-                [cite_start]heroSection.style.backgroundPosition = 'center'; [cite: 49]
+                if (!item) {
+                    console.log('No hay item para renderizar el Hero Section.');
+                    return;
+                }
+                console.log(`Renderizando Hero Section para: ${item.title}`);
+                heroSection.style.backgroundImage = `linear-gradient(to top, #141414 10%, transparent 50%), url('${item.backdrop}')`;
+                heroSection.style.backgroundSize = 'cover';
+                heroSection.style.backgroundPosition = 'center';
                 heroSection.innerHTML = `
                     <div class="z-10">
                         <h2 class="text-4xl md:text-6xl font-black">${item.title}</h2>
@@ -277,127 +305,137 @@
                             Más Información
                         </button>
                     </div>
-                [cite_start]`; [cite: 50, 51]
+                `;
             }
 
             function renderDetailsModal(item) {
+                if (!item) {
+                    console.error('No se pudo renderizar el modal de detalles, item es nulo.');
+                    return;
+                }
+                console.log(`Renderizando modal de detalles para: ${item.title}`);
                 modalContent.innerHTML = `
                     <div class="relative">
                         <img src="${item.backdrop}" alt="${item.title}" class="w-full h-48 md:h-72 object-cover rounded-t-lg" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/141414/ef4444?text=No+Image';">
-                        [cite_start]<div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div> [cite: 52]
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
                         <button id="close-modal" class="absolute top-2 right-2 bg-black bg-opacity-50 rounded-full p-2 text-white hover:bg-opacity-75">
-                            [cite_start]<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> [cite: 53]
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </button>
                     </div>
                     <div class="p-6 space-y-4">
                         <h2 class="text-3xl font-bold">${item.title} <span class="font-normal text-gray-400">(${item.year})</span></h2>
-                        [cite_start]<div class="flex items-center space-x-4 flex-wrap"> [cite: 54]
+                        <div class="flex items-center space-x-4 flex-wrap">
                             <div class="flex items-center space-x-1">
-                                [cite_start]<svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg> [cite: 55]
+                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                                 <span class="text-lg font-bold">${item.rating}</span><span class="text-gray-400">/ 10</span>
                             </div>
-                            [cite_start]<span class="text-gray-400">•</span> [cite: 56]
-                            [cite_start]<span class="text-gray-300">${item.genre}</span> [cite: 56]
-                            [cite_start]<span class="text-gray-400">•</span> [cite: 56]
-                            <span class="capitalize text-gray-300 px-2 py-1 text-sm rounded ${item.type === 'movie' ? 'bg-blue-800' : 'bg-green-800'}">${item.type === 'movie' ? [cite_start]'Película' : 'Serie TV'}</span> [cite: 57, 58]
+                            <span class="text-gray-400">•</span>
+                            <span class="text-gray-300">${item.genre}</span>
+                            <span class="text-gray-400">•</span>
+                            <span class="capitalize text-gray-300 px-2 py-1 text-sm rounded ${item.type === 'movie' ? 'bg-blue-800' : 'bg-green-800'}">${item.type === 'movie' ? 'Película' : 'Serie TV'}</span>
                         </div>
                         <p class="text-gray-300 leading-relaxed">${item.description}</p>
                         
-                        [cite_start]<div class="border-t border-gray-700 pt-4 space-y-4"> [cite: 59]
-                            [cite_start]<h3 class="text-lg font-semibold">Funciones con IA ✨</h3> [cite: 59]
-                            [cite_start]<div class="flex flex-col sm:flex-row gap-3"> [cite: 60]
-                                [cite_start]<button id="gemini-summary-btn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-colors w-full">✨ Resumen Creativo</button> [cite: 60]
-                                [cite_start]<button id="gemini-trivia-btn" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition-colors w-full">✨ Generar Trivia</button> [cite: 60]
+                        <div class="border-t border-gray-700 pt-4 space-y-4">
+                            <h3 class="text-lg font-semibold">Funciones con IA ✨</h3>
+                            <div class="flex flex-col sm:flex-row gap-3">
+                                <button id="gemini-summary-btn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-colors w-full">✨ Resumen Creativo</button>
+                                <button id="gemini-trivia-btn" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition-colors w-full">✨ Generar Trivia</button>
                             </div>
-                            [cite_start]<div id="gemini-output" class="bg-gray-800 p-4 rounded-lg min-h-[100px] text-gray-300 whitespace-pre-wrap hidden"></div> [cite: 61]
+                            <div id="gemini-output" class="bg-gray-800 p-4 rounded-lg min-h-[100px] text-gray-300 whitespace-pre-wrap hidden"></div>
                         </div>
 
-                        [cite_start]<div class="border-t border-gray-700 pt-4"> [cite: 62]
-                            [cite_start]<h3 class="text-lg font-semibold mb-2">Tu calificación</h3> [cite: 62]
-                            [cite_start]<div id="star-rating-container" class="star-rating flex items-center space-x-1 cursor-pointer" data-item-id="${item.id}"> [cite: 63]
+                        <div class="border-t border-gray-700 pt-4">
+                            <h3 class="text-lg font-semibold mb-2">Tu calificación</h3>
+                            <div id="star-rating-container" class="star-rating flex items-center space-x-1 cursor-pointer" data-item-id="${item.id}">
                                 ${[1, 2, 3, 4, 5].map(star => `
-                                    <svg class="w-8 h-8 text-gray-500" data-value="${star}" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                [cite_start]`).join('')} [cite: 64]
+                                    <svg class="w-8 h-8 text-gray-500" data-value="${star}" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00-.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                `).join('')}
                             </div>
-                            [cite_start]<p id="rating-feedback" class="text-sm text-gray-400 mt-2 h-5"></p> [cite: 65]
+                            <p id="rating-feedback" class="text-sm text-gray-400 mt-2 h-5"></p>
                         </div>
                     </div>
                 `;
-                [cite_start]detailsModal.classList.remove('hidden'); [cite: 66]
-                [cite_start]setTimeout(() => modalContent.classList.remove('scale-95'), 10); [cite: 66]
-                // No hay userRating persistente en esta versión, siempre empieza en 0 o podrías guardarlo en localStorage
+                detailsModal.classList.remove('hidden');
+                setTimeout(() => modalContent.classList.remove('scale-95'), 10);
                 item.userRating = 0; 
                 setupStarRating(item);
                 setupGeminiButtons(item);
             }
 
             function closeModal() {
-                 [cite_start]modalContent.classList.add('scale-95'); [cite: 67]
-                 [cite_start]setTimeout(() => detailsModal.classList.add('hidden'), 300); [cite: 67]
+                 console.log('Cerrando modal...');
+                 modalContent.classList.add('scale-95');
+                 setTimeout(() => detailsModal.classList.add('hidden'), 300);
             }
             
             function setupStarRating(item) {
-                [cite_start]const container = document.getElementById('star-rating-container'); [cite: 68]
+                const container = document.getElementById('star-rating-container');
                 if (!container) return;
-                [cite_start]const stars = container.querySelectorAll('svg'); [cite: 68]
-                [cite_start]const feedback = document.getElementById('rating-feedback'); [cite: 69]
+                const stars = container.querySelectorAll('svg');
+                const feedback = document.getElementById('rating-feedback');
                 const updateStars = (rating) => {
                     stars.forEach(star => {
-                        [cite_start]star.classList.toggle('text-yellow-400', star.dataset.value <= rating); [cite: 70]
-                        [cite_start]star.classList.toggle('text-gray-500', star.dataset.value > rating); [cite: 70]
+                        star.classList.toggle('text-yellow-400', star.dataset.value <= rating);
+                        star.classList.toggle('text-gray-500', star.dataset.value > rating);
                     });
                 };
                 container.addEventListener('mouseover', e => {
-                    [cite_start]if (e.target.closest('svg')) updateStars(e.target.closest('svg').dataset.value); [cite: 71]
+                    if (e.target.closest('svg')) updateStars(e.target.closest('svg').dataset.value);
                 });
-                [cite_start]container.addEventListener('mouseout', () => updateStars(item.userRating)); [cite: 71]
+                container.addEventListener('mouseout', () => updateStars(item.userRating));
                 container.addEventListener('click', e => {
                     if (e.target.closest('svg')) {
                         const ratingValue = e.target.closest('svg').dataset.value;
-                        [cite_start]item.userRating = parseInt(ratingValue, 10); [cite: 72]
-                        [cite_start]updateStars(item.userRating); [cite: 72]
-                        [cite_start]feedback.textContent = `¡Gracias por tu voto de ${item.userRating} estrellas!`; [cite: 72]
-                        [cite_start]console.log(`Item ${item.id} calificado con ${item.userRating} estrellas.`); [cite: 72]
+                        item.userRating = parseInt(ratingValue, 10);
+                        updateStars(item.userRating);
+                        feedback.textContent = `¡Gracias por tu voto de ${item.userRating} estrellas!`;
+                        console.log(`Item ${item.id} calificado con ${item.userRating} estrellas.`);
                     }
-                [cite_start]}); [cite: 73]
-                [cite_start]updateStars(item.userRating); [cite: 73]
+                });
+                updateStars(item.userRating);
             }
 
             function setupGeminiButtons(item) {
-                [cite_start]const summaryBtn = document.getElementById('gemini-summary-btn'); [cite: 74]
-                [cite_start]const triviaBtn = document.getElementById('gemini-trivia-btn'); [cite: 74]
-                [cite_start]const outputContainer = document.getElementById('gemini-output'); [cite: 74]
+                const summaryBtn = document.getElementById('gemini-summary-btn');
+                const triviaBtn = document.getElementById('gemini-trivia-btn');
+                const outputContainer = document.getElementById('gemini-output');
 
                 const handleApiCall = async (prompt, button) => {
-                    [cite_start]outputContainer.classList.remove('hidden'); [cite: 75]
-                    [cite_start]outputContainer.innerHTML = '<div class="flex justify-center items-center h-full"><div class="loader"></div></div>'; [cite: 75]
-                    [cite_start]button.disabled = true; [cite: 75]
+                    outputContainer.classList.remove('hidden');
+                    outputContainer.innerHTML = '<div class="flex justify-center items-center h-full"><div class="loader"></div></div>';
+                    button.disabled = true;
 
-                    const result = await callGemini(prompt);
-                    
-                    outputContainer.innerHTML = ''; [cite_start]// Limpiar el loader [cite: 76]
-                    outputContainer.textContent = result; [cite_start]// Usar textContent para evitar problemas de formato de HTML en la respuesta [cite: 77]
-                    [cite_start]button.disabled = false; [cite: 77]
+                    try {
+                        const result = await callGemini(prompt);
+                        outputContainer.innerHTML = ''; // Limpiar el loader
+                        outputContainer.textContent = result; // Usar textContent para evitar problemas de formato de HTML en la respuesta
+                    } catch (error) {
+                        outputContainer.textContent = `Error al generar respuesta: ${error.message}`;
+                    } finally {
+                        button.disabled = false;
+                    }
                 };
 
                 summaryBtn.addEventListener('click', () => {
                     const prompt = `Escribe un resumen alternativo, creativo y emocionante para la ${item.type === 'movie' ? 'película' : 'serie'} '${item.title}'. No repitas la sinopsis oficial. Hazlo sonar como una recomendación imperdible en no más de 3 frases.`;
                     handleApiCall(prompt, summaryBtn);
-                [cite_start]}); [cite: 78]
+                });
 
                 triviaBtn.addEventListener('click', () => {
                     const prompt = `Dame 3 datos curiosos o de trivia, cortos e interesantes, sobre la ${item.type === 'movie' ? 'película' : 'serie'} '${item.title}'. Formatea la respuesta como una lista con viñetas.`;
                     handleApiCall(prompt, triviaBtn);
-                [cite_start]}); [cite: 79]
+                });
             }
 
             // --- LÓGICA PRINCIPAL DE CARGA DE PÁGINA ---
-            async function renderPage(filter = '') { // Añadido async
-                [cite_start]mainContent.innerHTML = ''; [cite: 80]
+            async function renderPage(filter = '') {
+                console.log(`Iniciando renderPage con filtro: "${filter}"`);
+                mainContent.innerHTML = '';
                 const lowerCaseFilter = filter.toLowerCase();
 
                 if (filter) {
-                    // Si hay un filtro, realiza una búsqueda en TMDb
+                    console.log('Realizando búsqueda en TMDb...');
                     const searchResults = await fetchFromTmdb('search/multi', { query: filter });
                     if (searchResults && searchResults.results.length > 0) {
                         const mappedResults = searchResults.results
@@ -412,17 +450,18 @@
                                 description: item.overview,
                                 poster: getImageUrl(item.poster_path),
                                 backdrop: getBackdropUrl(item.backdrop_path),
-                                userRating: 0 // Mantener para la funcionalidad local
+                                userRating: 0 
                             }));
                         
                         renderCarousel("Resultados de búsqueda", mappedResults, mainContent);
                     } else {
-                        [cite_start]mainContent.innerHTML = `<p class="text-center text-gray-400">No se encontraron resultados para "${filter}".</p>`; [cite: 81]
+                        mainContent.innerHTML = `<p class="text-center text-gray-400">No se encontraron resultados para "${filter}".</p>`;
                     }
-                    return; // Termina la función si se hizo una búsqueda
+                    console.log('Búsqueda terminada.');
+                    return; 
                 }
 
-                // Carga las categorías predefinidas si no hay filtro
+                console.log('Cargando categorías predefinidas...');
                 let trendingData = [];
                 let movieData = [];
                 let tvData = [];
@@ -481,80 +520,91 @@
                     { title: "Tendencias ahora", data: trendingData.slice(0, 8) },
                     { title: "Películas populares", data: movieData },
                     { title: "Series que enganchan", data: tvData },
-                    // Filtrar por rating alto y asegurar que no estén duplicados (usando un Set de IDs)
                     { title: "Aclamadas por la crítica", data: Array.from(new Set([...trendingData, ...movieData, ...tvData].filter(i => i.rating >= 8.0).map(item => item.id)))
                         .map(id => [...trendingData, ...movieData, ...tvData].find(item => item.id === id))
                         .sort((a,b) => b.rating - a.rating)
                         .slice(0,8)
                     }
-                [cite_start]]; [cite: 83]
+                ];
 
                 categories.forEach(cat => {
-                    [cite_start]if (cat.data.length > 0) renderCarousel(cat.title, cat.data, mainContent); [cite: 84]
-                [cite_start]}); [cite: 85]
+                    if (cat.data.length > 0) renderCarousel(cat.title, cat.data, mainContent);
+                });
+                console.log('Renderizado de categorías predefinidas completado.');
             }
 
             // --- EVENT LISTENERS ---
-            [cite_start]searchInput.addEventListener('input', (e) => renderPage(e.target.value)); [cite: 86]
+            searchInput.addEventListener('input', (e) => {
+                console.log(`Buscando por: ${e.target.value}`);
+                renderPage(e.target.value);
+            });
 
-            document.body.addEventListener('click', async (e) => { // Añadido async
+            document.body.addEventListener('click', async (e) => {
                 const card = e.target.closest('[data-id]');
                 if (card) {
                     const itemId = parseInt(card.dataset.id, 10);
-                    const itemType = card.dataset.type; // Obtener el tipo de la tarjeta
+                    const itemType = card.dataset.type;
+                    console.log(`Tarjeta clicada: ID=${itemId}, Tipo=${itemType}`);
                     
                     let itemDetails = null;
-                    if (itemType === 'movie') {
-                        const movieDetail = await fetchFromTmdb(`movie/${itemId}`);
-                        if (movieDetail && movieDetail.id) {
-                            itemDetails = {
-                                id: movieDetail.id,
-                                title: movieDetail.title,
-                                year: movieDetail.release_date?.substring(0, 4) || '',
-                                rating: movieDetail.vote_average ? parseFloat(movieDetail.vote_average.toFixed(1)) : 0,
-                                genre: movieDetail.genres.map(g => g.name).join(', '),
-                                type: 'movie',
-                                description: movieDetail.overview,
-                                poster: getImageUrl(movieDetail.poster_path),
-                                backdrop: getBackdropUrl(movieDetail.backdrop_path),
-                                userRating: 0 
-                            };
+                    try {
+                        if (itemType === 'movie') {
+                            const movieDetail = await fetchFromTmdb(`movie/${itemId}`);
+                            if (movieDetail && movieDetail.id) {
+                                itemDetails = {
+                                    id: movieDetail.id,
+                                    title: movieDetail.title,
+                                    year: movieDetail.release_date?.substring(0, 4) || '',
+                                    rating: movieDetail.vote_average ? parseFloat(movieDetail.vote_average.toFixed(1)) : 0,
+                                    genre: movieDetail.genres.map(g => g.name).join(', '),
+                                    type: 'movie',
+                                    description: movieDetail.overview,
+                                    poster: getImageUrl(movieDetail.poster_path),
+                                    backdrop: getBackdropUrl(movieDetail.backdrop_path),
+                                    userRating: 0 
+                                };
+                            }
+                        } else if (itemType === 'tv') {
+                            const tvDetail = await fetchFromTmdb(`tv/${itemId}`);
+                            if (tvDetail && tvDetail.id) {
+                                itemDetails = {
+                                    id: tvDetail.id,
+                                    title: tvDetail.name,
+                                    year: tvDetail.first_air_date?.substring(0, 4) || '',
+                                    rating: tvDetail.vote_average ? parseFloat(tvDetail.vote_average.toFixed(1)) : 0,
+                                    genre: tvDetail.genres.map(g => g.name).join(', '),
+                                    type: 'tv',
+                                    description: tvDetail.overview,
+                                    poster: getImageUrl(tvDetail.poster_path),
+                                    backdrop: getBackdropUrl(tvDetail.backdrop_path),
+                                    userRating: 0
+                                };
+                            }
                         }
-                    } else if (itemType === 'tv') {
-                        const tvDetail = await fetchFromTmdb(`tv/${itemId}`);
-                        if (tvDetail && tvDetail.id) {
-                            itemDetails = {
-                                id: tvDetail.id,
-                                title: tvDetail.name,
-                                year: tvDetail.first_air_date?.substring(0, 4) || '',
-                                rating: tvDetail.vote_average ? parseFloat(tvDetail.vote_average.toFixed(1)) : 0,
-                                genre: tvDetail.genres.map(g => g.name).join(', '),
-                                type: 'tv',
-                                description: tvDetail.overview,
-                                poster: getImageUrl(tvDetail.poster_path),
-                                backdrop: getBackdropUrl(tvDetail.backdrop_path),
-                                userRating: 0
-                            };
-                        }
+                    } catch (error) {
+                        console.error(`Error al obtener detalles para ${itemType} ID ${itemId}:`, error);
                     }
 
                     if (itemDetails) {
-                        [cite_start]renderDetailsModal(itemDetails); [cite: 87]
+                        renderDetailsModal(itemDetails);
+                    } else {
+                        console.warn(`No se encontraron detalles para ${itemType} ID ${itemId}. No se abre el modal.`);
                     }
                 }
-            [cite_start]}); [cite: 88]
+            });
 
             detailsModal.addEventListener('click', (e) => {
-                [cite_start]if (e.target.id === 'details-modal' || e.target.closest('#close-modal')) closeModal(); [cite: 89]
+                if (e.target.id === 'details-modal' || e.target.closest('#close-modal')) closeModal();
             });
 
             // --- INICIALIZACIÓN DE LA APP ---
+            console.log('Iniciando carga de géneros...');
             await fetchGenres(); // Cargar los géneros antes de renderizar cualquier cosa
             
-            // Cargar datos para el Hero Section
+            console.log('Cargando datos para Hero Section...');
             const trendingAll = await fetchFromTmdb('trending/all/week');
             if (trendingAll && trendingAll.results.length > 0) {
-                const heroItem = trendingAll.results.find(item => item.backdrop_path && item.overview); // Busca uno con backdrop y descripción
+                const heroItem = trendingAll.results.find(item => item.backdrop_path && item.overview);
                 if (heroItem) {
                     renderHero({
                         id: heroItem.id,
@@ -563,10 +613,15 @@
                         backdrop: getBackdropUrl(heroItem.backdrop_path),
                         type: heroItem.media_type === 'movie' ? 'movie' : 'tv',
                         year: (heroItem.release_date || heroItem.first_air_date)?.substring(0, 4) || ''
-                    [cite_start]}); [cite: 90]
+                    });
+                } else {
+                    console.warn('No se encontró un elemento adecuado para el Hero Section en los resultados de tendencias.');
                 }
+            } else {
+                console.warn('No se pudieron obtener datos de tendencias para el Hero Section.');
             }
 
+            console.log('Llamando a renderPage inicial...');
             renderPage(); // Cargar los carruseles iniciales
         });
     </script>
